@@ -1,0 +1,12 @@
+{
+    "objectscript.conn": {
+        "server": "iris_health",
+        "ns": "REST-API",
+        "active": true
+    },
+    "objectscript.export": {
+        "folder": "src",
+        "format": "objectscript",
+        "ns": "REST-API"
+    }
+}
