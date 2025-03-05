@@ -13,6 +13,8 @@ Property ExpiryIn As %Float;
 
 Index UsernameIndex On Username [ Unique ];
 
+Index UserIdIndex On UserId [ Unique ];
+
 ClassMethod OpenByUsername(pUsername As %String) As Todo.Data.AppUser
 {
     Quit ..UsernameIndexOpen(pUsername)

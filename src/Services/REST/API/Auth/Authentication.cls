@@ -44,9 +44,12 @@ ClassMethod LoginUser() As %Status
 
         // Generate JWT token
         Set tToken = ..GenerateToken(tUser.UserId, tUsername)
-        Set tExpiration = ..GetTokenExpiration()
+        Set tExpiration = +..GetTokenExpiration()
+        Set now = $ZTIMESTAMP
+        Set nowFloat = $Piece(now, ",", 1) + ($Piece(now, ",", 2) / 86400)
         Set tUser.AccessToken = tToken
-        Set tUser.ExpiryIn = tExpiration
+        Set tUser.ExpiryIn = nowFloat + (tExpiration / 86400)
+        Write "Saving Token: ", tToken, " Expires: ", tUser.ExpiryIn, " Now: ", nowFloat, !
         Set tStatus = tUser.%Save()
         If $$$ISERR(tStatus) {
             Set sc = tStatus
